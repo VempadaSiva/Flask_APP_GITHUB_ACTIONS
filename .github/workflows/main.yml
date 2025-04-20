@@ -57,7 +57,7 @@ jobs:
       - name: Health Check
         run: |
           for i in {1..10}; do
-            curl-s -o /dev/null -w "%{http_code}" $HEALTH_CHECK_URL | grep "200" && echo "Health check passed" && exit 0 || echo "Waiting for service....";
+            curl -s -o /dev/null -w "%{http_code}" $HEALTH_CHECK_URL | grep "200" && echo "Health check passed" && exit 0 || echo "Waiting for service....";
             sleep 5;
           done;
           echo "Health check failed" && exit 1
