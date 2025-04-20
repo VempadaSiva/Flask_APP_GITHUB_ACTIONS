@@ -21,6 +21,15 @@ jobs:
         with:
           python-version: "3.9"
 
+      - name: Cache depedencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner}}-pip${{ hashfiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip--
+
+            
       - name: Virtual env  
         run: |
             sudo apt install python3.12-venv -y
